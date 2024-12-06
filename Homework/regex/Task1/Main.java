@@ -16,6 +16,12 @@ public class Main {
         long number = text.chars().filter(Character::isDigit).count();
         System.out.println(number);
 
+
+        System.out.println("Hello for git");
+
+
+
+
     }
 
     public static void method (String str){
