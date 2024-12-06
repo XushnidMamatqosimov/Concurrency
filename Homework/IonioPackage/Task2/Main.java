@@ -9,6 +9,7 @@ public class Main {
         serilaizeQilish(student);
 
         deSerilazieQilish();
+        System.out.println("Hello World");
     }
 
     private static void deSerilazieQilish() {
