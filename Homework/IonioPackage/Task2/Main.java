@@ -10,6 +10,7 @@ public class Main {
 
         deSerilazieQilish();
         System.out.println("Hello World");
+        System.out.println("new file to modify");
     }
 
     private static void deSerilazieQilish() {
