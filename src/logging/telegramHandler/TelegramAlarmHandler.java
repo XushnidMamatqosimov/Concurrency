@@ -8,23 +8,33 @@ import java.util.logging.LogRecord;
 import java.util.logging.StreamHandler;
 
 public class TelegramAlarmHandler extends StreamHandler {
+    public TelegramAlarmHandler() {
+        super.setFilter(new TelegramAlarmFilter());
+        super.setFormatter(new TelegramAlarmFormatter());
+    }
+
     @Override
     public void publish(LogRecord record) {
-        try {
-            String bodyMessage = """
-                    {
-                    "chat_id":"%s",
-                    "text":"%s"
-                    }""".formatted(Secrets.chatId, getFormatter().format(record));
-            System.out.println(bodyMessage);
-            HttpClient httpClient = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .POST(HttpRequest.BodyPublishers.ofString(bodyMessage))
-                    .uri(URI.create(Secrets.sendMessage))
-                    .build();
-            httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (isLoggable(record)) {
+            try {
+                String formattedMessage = getFormatter().format(record);
+                String bodyMessage = """
+                        {
+                        "chat_id":"%s",
+                        "text":"%s"
+                        }""".formatted(Secrets.chatId, formattedMessage);
+
+                HttpClient httpClient = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .POST(HttpRequest.BodyPublishers.ofString(bodyMessage))
+                        .uri(URI.create(Secrets.sendMessage))
+                        .header("Content-Type", "application/json")
+                        .build();
+                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                System.out.println(response.body());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -34,6 +44,6 @@ public class TelegramAlarmHandler extends StreamHandler {
 
     @Override
     public boolean isLoggable(LogRecord record) {
-        return super.isLoggable(record);
+        return getFilter().isLoggable(record);
     }
 }
