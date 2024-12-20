@@ -1,1 +1,1 @@
-this is Buffered Writer class
+Hello, Java IO!

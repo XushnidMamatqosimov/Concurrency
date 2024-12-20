@@ -1,4 +1,4 @@
-package RegularExpression.Learing;
+package Regex_RegularExpression.Learing;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package RegularExpression;
+package Regex_RegularExpression;
 
 public class SelfCheck {
     public static String valid = "This email is valid";
