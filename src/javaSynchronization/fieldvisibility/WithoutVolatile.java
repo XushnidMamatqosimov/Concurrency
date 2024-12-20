@@ -19,7 +19,7 @@ class MyRunnable implements Runnable{
     public void run() {
         active=true;
         while (active){
-            //System.out.println(Thread.currentThread());
+           // System.out.println(Thread.currentThread());
         }
         System.out.println(Thread.currentThread()+ " ::::::::::::::::: Finished");
     }

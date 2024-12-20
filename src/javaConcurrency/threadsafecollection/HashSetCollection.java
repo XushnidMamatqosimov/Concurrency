@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class HashSetCollection {
     public static void main(String[] args) throws InterruptedException {
-        // todo: Esli yoli:
+        // todo: Eski yoli:
         var set1 = new HashSet<Integer>();
         var set = Collections.synchronizedSet(set1);
 
