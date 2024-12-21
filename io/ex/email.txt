@@ -1,0 +1,5 @@
+String[] fileUrls = {
+                "https://example.com/file1.txt",
+                "https://example.com/file2.txt",
+                "https://example.com/file3.txt"
+        };
